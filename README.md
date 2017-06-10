@@ -1,6 +1,6 @@
 # NOTES
 
-## (Haskell)[haskell.md]
+## [Haskell](haskell.md)
 
 
 
