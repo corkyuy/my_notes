@@ -26,41 +26,40 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
       * data Lit = CharL Char ...
     * {-# LANGUAGE TemplateHaskellQuotes #-}
     * {-# LANGUAGE TemplateHaskell #-}
-      * Expression AST
-        ```haskell
-        [|...|]
-        OR
-        [e|...|]
+    * Expression AST
+      ```haskell
+      [|...|]
+      OR
+      [e|...|]
 
-        > runQ [| 1 + 2 |]
-        ```
-      * Top-Level Declaration AST
-        ```haskell
-        [d|...|]
+      > runQ [| 1 + 2 |]
+      ```
+    * Top-Level Declaration AST
+      ```haskell
+      [d|...|]
 
-        > runQ [d| x=5 |]
-        ```
-      * Type AST
-        ```haskell
-        [t|...|]
+      > runQ [d| x=5 |]
+      ```
+    * Type AST
+      ```haskell
+      [t|...|]
 
-        > runQ [t| Int |]
-        ```
-      * Pattern AST
-        ```haskell
-        [p|...|]
+      > runQ [t| Int |]
+      ```
+    * Pattern AST
+      ```haskell
+      [p|...|]
 
-        > runQ [t|(x,y)|]
-        ```
-      * quasi-quotation (mostly used for DSL)
-        * {-# LANGUAGE QuasiQuotes #-}
-        ```haskell
-        ["quoter"|...|]
-        ```
-
-
+      > runQ [t|(x,y)|]
+      ```
 
   * DSL (domain specific language)
+    * quasi-quotation (mostly used for DSL)
+      * {-# LANGUAGE QuasiQuotes #-}
+      ```haskell
+      ["quoter"|...|]
+      ```
+
 
 ## Libraries
 
