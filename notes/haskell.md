@@ -2,8 +2,8 @@
 
 ## Info
 
-* (Typeclassopedia)[https://wiki.haskell.org/Typeclassopedia]
-* (Documentation)[https://downloads.haskell.org/~ghc/8.0.2/docs/html/users_guide/]
+* [Typeclassopedia](https://wiki.haskell.org/Typeclassopedia)
+* [Documentation](https://downloads.haskell.org/~ghc/8.0.2/docs/html/users_guide/)
 
 ## Libraries
 
