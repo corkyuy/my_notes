@@ -5,6 +5,10 @@
 * [Typeclassopedia](https://wiki.haskell.org/Typeclassopedia)
 * [Documentation](https://downloads.haskell.org/~ghc/8.0.2/docs/html/users_guide/)
 
+## Template
+
+* [Template Haskell](https://ocharles.org.uk/blog/guest-posts/2014-12-22-template-haskell.html)
+
 ## Libraries
 
 * Data.Text -> Unicode support
