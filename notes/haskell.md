@@ -8,6 +8,13 @@
 ## Template
 
 * [Template Haskell](https://ocharles.org.uk/blog/guest-posts/2014-12-22-template-haskell.html)
+  * Code Generation
+    * Q monad (Quotation Monad)
+    ```haskell
+    runQ [|1+2|]
+    ```
+
+  * DSL (domain specific language)
 
 ## Libraries
 
