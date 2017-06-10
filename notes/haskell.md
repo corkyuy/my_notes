@@ -16,6 +16,10 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 ## Template
 
 * [Template Haskell](https://ocharles.org.uk/blog/guest-posts/2014-12-22-template-haskell.html)
+  * Compiler
+  * Debugging
+    * stack build --ghc-options=-ddump-splices
+    * ``` >>= putStrLn . pprint ```
   * Code Generation
     * Q monad (Quotation Monad)
     ```haskell
@@ -52,7 +56,6 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
       > runQ [t|(x,y)|]
       ```
-
   * DSL (domain specific language)
     * quasi-quotation (mostly used for DSL)
       * {-# LANGUAGE QuasiQuotes #-}
