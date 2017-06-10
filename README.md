@@ -1,1 +1,6 @@
-# notes
+# NOTES
+
+## (Haskell)[haskell.md]
+
+
+
