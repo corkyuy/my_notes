@@ -1,6 +1,6 @@
 # NOTES
 
-## [Haskell](haskell.md)
+## [Haskell](notes/haskell.md)
 
-## [Git](git.md)
+## [Git](notes/git.md)
 
