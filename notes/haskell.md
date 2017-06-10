@@ -63,7 +63,7 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
       ["quoter"|...|]
       ```
   * reification (reify)
-    * queries the state of Haskell __name__ s and get info about them
+    * queries the state of Haskell __name__ and get info about them
       * info depends on whether __type context__ or __expression context__
     * **reify** returns data type called **info**
 
