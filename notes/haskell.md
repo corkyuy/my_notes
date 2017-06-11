@@ -34,8 +34,7 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
     1. an expression; the spliced expression must have type Q Exp
     1. a pattern; the spliced pattern must have type Q Pat
     1. a type; the spliced expression must have type Q Type
-    1. a list of declarations at top level; the spliced expression must have type
-    1. Q [Dec]
+    1. a list of declarations at top level; the spliced expression must have type Q [Dec]
 
   * Code Generation
     * Q monad (Quotation Monad)
