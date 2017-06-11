@@ -30,12 +30,38 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
     * stack build --ghc-options=-ddump-splices
     * stack ghci --ghc-options=-ddump-splices
     * ``` >>= putStrLn . pprint ```
+  * Splice: splice can occur in place of
+    1. an expression; the spliced expression must have type Q Exp
+    1. a pattern; the spliced pattern must have type Q Pat
+    1. a type; the spliced expression must have type Q Type
+    1. a list of declarations at top level; the spliced expression must have type
+    1. Q [Dec]
+
   * Code Generation
     * Q monad (Quotation Monad)
       - PatQ ```type PatQ = Q Pat```
     ```haskell
     > runQ [|1+2|]
     InfixE (Just (LitE (IntegerL 1))) (VarE GHC.Num.+) (Just (LitE (IntegerL 2)))
+    ```
+    * Using : func = lambda (args) (body)
+      * args => PatQ
+      * body => ExpQ
+    * Quotation
+      * Pattern Q -> PatQ
+      * Expression Q -> ExpQ
+    * Codes:
+    ```haskell
+    -- Function
+    varP    -- varP :: Name -> PatQ
+    mkName  -- mkName :: String -> Name
+    infixApp -- infixApp :: ExpQ -> ExpQ -> ExpQ -> ExpQ
+    stringE -- stringE :: String -> ExpQ
+    appE -- appE :: ExpQ -> ExpQ -> ExpQ
+    varE -- varE :: Name -> ExpQ
+    lamE -- lamE :: [PatQ] -> ExpQ -> ExpQ
+    -- Types
+    ExpQ    -- type ExpQ = Q Exp
     ```
     * import Language.Haskell.TH
       * data Lit = CharL Char ...
