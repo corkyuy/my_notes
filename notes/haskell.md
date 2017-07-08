@@ -151,11 +151,17 @@ let fibs::[Integer]
 :}
 ```
 
+## Documentation
+
+### Haddock
+
+* [Haddock documentation] (https://www.haskell.org/haddock/doc/html/ch03s03.html)
+
 ## Troubleshooting
 
 ### VIM seems stuck when saving .hs files
 
 * hdevtools is stuck
-  * try reinstalling hdevtools using stack install hdevtools
+  * try reinstalling hdevtools using ```stack install hdevtools```
   * make sure path points to the right version of hdevtools
 
