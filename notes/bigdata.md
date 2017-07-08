@@ -29,25 +29,17 @@ is called ** Big Data Analysis **
 ## Idea
 
 1. Scale out, not UP
-
-Scale out -> large # of commodity of low end servers over small high-performing servers
-
+  Scale out -> large # of commodity of low end servers over small high-performing servers
 1. Assume failures are common
+  Make an assumption (e.g. failure after 1000 days)
 
-Make an assumption (e.g. failure after 1000 days)
-
-MTBF of 1000 days
-
+  MTBF of 1000 days
 1. What is the failure rate? 10 failures a day( how...)
-
--> Scale out is about scaling, noot about failure
-
-
+  -> Scale out is about scaling, noot about failure
 1. Move processing to the data
+  Huge data > computation prower
 
-Huge data > computation prower
-
-Since moving data is so huge, moving it is expensive
+  Since moving data is so huge, moving it is expensive
 
 ### MapReduce
 
