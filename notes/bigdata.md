@@ -136,19 +136,11 @@ Rack 2 [5..8] - A, AB,
 
 Rack 3 [9..12] - ,  B, B, C
 
-
-| @    | 1 | 2 | 3 | 4 |
-|------|---|---|---|---|
-|Rack 1| A | C |  C|   |
-|Rack 2| A | AB|   |   |
-|Rack 3|   |B  |B  | C |
-
-
 | S | Rack 1 | Rack 2 | Rack 3 |
 |---|--------|--------|--------|
-| 1 | A      | A      |        |
+| 1 | A C    | A      |        |
 | 2 | C      | AB     | B      |
-| 3 | C      |        | B      |
+| 3 |        |        | B      |
 | 4 |        |        | C      |
 
 
@@ -168,8 +160,20 @@ Rack 3 [9..12] - ,  B, B, C
 *MapReduce - abstracts system-level details from programmers*
 
 
+fmap :: (a -> b) -> f a -> f b
+fold :: (b -> a -> b) -> b -> f a -> b
 
+### Problem
 
+If odd # is equal return 0, if odds > even : positive #, otherwise negative #
+
+```
+{ 8, 7, 5, 12, 13}
+
+f(x)          := (x % 2) ? 1 : 0;
+g(x,i)        := x+i
+initial value := 0
+```
 
 
 
