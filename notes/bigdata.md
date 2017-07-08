@@ -167,10 +167,16 @@ fold :: (b -> a -> b) -> b -> f a -> b
 
 If odd # is equal return 0, if odds > even : positive #, otherwise negative #
 
+**f(x)**
+
+**g(x,i)**
+
+**initial value**
+
 ```
 { 8, 7, 5, 12, 13}
 
-f(x)          := (x % 2) ? 1 : 0;
+f(x)          := (x % 2) ? 1 : -1;
 g(x,i)        := x+i
 initial value := 0
 ```
