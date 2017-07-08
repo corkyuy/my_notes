@@ -111,7 +111,7 @@ I/O is challenge not the storage capacity
 
 Memory to Hard Disk
 
-** NOT NameNode **
+**NOT NameNode**
 
 #### Job Tracker
 
@@ -133,6 +133,27 @@ Block A,B,C
 Rack 1 [1..4] - A,  C, C,
 Rack 2 [5..8] - A, AB,
 Rack 3 [9..12] - ,  B, B, C
+
+| | 1 | 2 | 3 | 4 |
+|---|--------|------|--------|
+|Rack 1| A | C | C| |
+|Rack 2| A | AB| | |
+|Rack 3| |B |B | C| |
+
+## MapReduce
+
+### Basics
+
+**Divide and Conquer**
+
+* Break up large to small (how to break up a large problem)
+* Assign task to workers - some workers are better suited than others
+* Ensure workers get the data
+* Coordinate synchronization
+* Share partial results
+* How to take care of software errors/hardware faults
+
+*MapReduce - abstracts system-level details from programmers*
 
 
 
