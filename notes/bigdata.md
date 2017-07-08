@@ -131,18 +131,30 @@ Blahblahblah
 Block A,B,C
 
 Rack 1 [1..4] - A,  C, C,
+
 Rack 2 [5..8] - A, AB,
+
 Rack 3 [9..12] - ,  B, B, C
 
-| | 1 | 2 | 3 | 4 |
-|---|--------|------|--------|
-|Rack 1| A | C | C| |
-|Rack 2| A | AB| | |
-|Rack 3| |B |B | C| |
+
+| @    | 1 | 2 | 3 | 4 |
+|------|---|---|---|---|
+|Rack 1| A | C |  C|   |
+|Rack 2| A | AB|   |   |
+|Rack 3|   |B  |B  | C |
+
+
+| S | Rack 1 | Rack 2 | Rack 3 |
+|---|--------|--------|--------|
+| 1 | A      | A      |        |
+| 2 | C      | AB     | B      |
+| 3 | C      |        | B      |
+| 4 |        |        | C      |
+
 
 ## MapReduce
 
-### Basics
+### Basics 
 
 **Divide and Conquer**
 
