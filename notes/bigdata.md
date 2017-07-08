@@ -16,9 +16,9 @@
 * Volume (Huge)
 * Digital format
 
-* Challenge is to make sense of the data *
+* Challenge is to make sense of the data
 
-is called ** Big Data Analysis **
+    is called ** Big Data Analysis **
 
 ## 3 V's (Fundamental Data characteristics)
 
@@ -29,17 +29,18 @@ is called ** Big Data Analysis **
 ## Idea
 
 1. Scale out, not UP
-  Scale out -> large # of commodity of low end servers over small high-performing servers
+    Scale out -> large # of commodity of low end servers over small high-performing servers
 1. Assume failures are common
-  Make an assumption (e.g. failure after 1000 days)
 
-  MTBF of 1000 days
+    Make an assumption (e.g. failure after 1000 days)
+
+    MTBF of 1000 days
 1. What is the failure rate? 10 failures a day( how...)
-  -> Scale out is about scaling, noot about failure
+    -> Scale out is about scaling, noot about failure
 1. Move processing to the data
-  Huge data > computation prower
+    Huge data > computation prower
 
-  Since moving data is so huge, moving it is expensive
+    Since moving data is so huge, moving it is expensive
 
 ### MapReduce
 
@@ -51,7 +52,7 @@ is called ** Big Data Analysis **
 
 1. Process data sequentially and avoid random access
 
-dataset are too large to fit in memory
+    dataset are too large to fit in memory
 
 1. Hide system-level details from AP dev
 
