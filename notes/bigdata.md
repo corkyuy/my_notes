@@ -181,5 +181,68 @@ g(x,i)        := x+i
 initial value := 0
 ```
 
+### Mappers and Reducers
+
+**Key-value** pairs form the basic data struct in MapReduce
+
+* map: (k1:v1)      => [(k2:v2)]
+* reduce: (k2:[v2]) => [(k3:v3)]
+
+Key-value pairs = split
+
+mapper produces arbitrary number of *intermediate* key-value pairs
+
+reducers applied to *all values* associated with the intermediate key to
+generate output key-value pairs
+
+**intermediate key-value** not stored permanently
+
+node A => mapper produces [(a,1),(b,2),(a,3),...]
+
+node B => mapper produces [(b,2),(c,3),...]
+
+reducer 1 => (a,[1,3,...]
+
+reducer 2 => (b,[2,2,...])
+
+
+#### Word count algo
+
+```
+class Mapper
+  method Map(docid a; doc d)
+    for all term t in doc d do
+      Emit(term t; count 1)
+
+class Reducer
+  method Reduce(term t; count[c1;c2;...])
+    sum = 0
+    for all count c in counts[c1;c2;...] do
+      sum = sum + c
+    Emit(term t; count sum)
+```
+
+There is a way to partition data.
+
+#### Hadoop vs Google
+
+| ---- | Google | Hadoop |
+|--------|--------|
+|reducers receive keys in | sorted order | arbitrarily ordered|
+|reducers can change output key| not allowed | can emit arbitrary number of out
+key-value pairs|
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
