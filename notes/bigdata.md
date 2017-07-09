@@ -229,8 +229,7 @@ There is a way to partition data.
 | ---- | Google | Hadoop |
 |--------|----|----|
 |reducers receive keys in | sorted order | arbitrarily ordered|
-|reducers can change output key| not allowed | can emit arbitrary number of out
-key-value pairs|
+|reducers can change output key| not allowed | can emit arbitrary number of out key-value pairs|
 
 
 
