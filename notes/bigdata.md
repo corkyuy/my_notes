@@ -231,6 +231,23 @@ There is a way to partition data.
 |reducers receive keys in | sorted order | arbitrarily ordered|
 |reducers can change output key| not allowed | can emit arbitrary number of out key-value pairs|
 
+### Restrictions
+
+* be careful about using external resource ( multiple mappers/reducers may
+  be contending for those resources )
+
+### Side effects
+
+* It can have side-effects such as writing files to distributed file system
+
+### Special cases
+
+1. MapReduce can contain no reducers
+1. MapReduce is not possible without mapper
+1. Identify function
+1. Running Id
+
+
 
 
 
