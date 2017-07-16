@@ -244,16 +244,128 @@ There is a way to partition data.
 
 1. MapReduce can contain no reducers
 1. MapReduce is not possible without mapper
-1. Identify function
+1. Identity function
 1. Running Id
 
 
+### Map and fold
+
+if array has 0 AND 9 OR has 5
+Value is X
+Else Y
+
+f(x) = if x in [5] return 3
+      else if x == 0 return 1
+      else if x == 9 return 2
+      else return 0
+
+g(x,y) =
+  return (x|y)
+initial value = 0
+
+
+if ( result == 3 ) // FANCY
+else // NOT-FANCY
+
+
+## Execution framework
+
+MapReduce separate the what of distributed processing from the how
+
+MapReduce program refers to a *job*
+
+JobTracker = submission node
+
+Execution framework = runtime
+
+Responsibilities:
+    * divides into smaller unit called tasks (task queue)
+    * data/code co-location
+    * synchronization
+        copying intermediate data over the network (with the process) is called
+        "Shuffle and sort"
+    * Error and fault handling
+
+
+## Partitioners and combiners
+
+* partitioners
+    * **resp** for dividing up the intermediate key space and assign
+  intermediate key-value pairs to reducers.
+    * specifies the task to w/c an intermediate key-value pair must be copied
+    * simplest partitioner involves computing the hash value of the key and
+      then taking the mod of that value with the number of reducers.
+
+
+* combiners
+    * optimization in MapReduce that allow local aggregation before the shuffle
+      and sort phase
+    * "mini-reducers" that take place out of the mapper, before shuffle and
+      sort
+    * "nothing but a reducer"
+    * framework does not guarantee running the combiner
+
+
+* DFS
+
+Stores 3 separate copies of data (by default) to ensure :
+    * reliability
+    * availability
+    * performance
+
+- **NameNode**
+    * clients contact namenode to find where data is stored
+    * returns relevant block id
+- **DataNode**
+    * client contacts the datanode to retrieve data
+    * returns data
+
+
+HDFS namenode responsibilities
+
+* namespace management
+* coordinating file operations
+* maintaining overall health of the file system
+    * rebalancing
+
+
+HDFS (or GFS) environment
+
+* Stores a relatively modest number of *large* files
+* workload are batch-oriented
+    * sustained bandwidth is more important than low latency
+* File system in deployed with env. of cooperative users
+    * no security discussion
+* System is built on unreliable and (maybe) inexpensive components
+* weakness: master goes offline, entire filesystem and mapreduce halts
+
+
+## Hadoop Cluster Architecture
+
+### namenode
+
+* job submission node runs **jobtracker**
+    * jobtracker
+        * single point of contact for client wishing to execute a MapReduce
+        * monitors the progress of running MapReduce jobs
+        * responsible for coordinating execution of mappers / reducers
+* bulk of hadoop cluster consists of slave node that runs **tasktracker**
+    * tasktracker
+        * actually running the user code
+        * datanode daemon, serving HDFS data
 
 
 
+## Multiple files
 
 
 
+* Process
+
+1. Load file
+1. Map :: k:v -> [k2:v2]
+1. Shuffle - sort
+1. Reduce :: k2:[v2] -> [k3:v3]
 
 
 
