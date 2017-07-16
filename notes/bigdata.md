@@ -2,8 +2,6 @@
 
 ## Measuring data
 
-*WHAT THE FUCK!!!! Why are we spending 5 mins with this???*
-
 * Gigabyte
 * Terabyte
 * Petabyte
