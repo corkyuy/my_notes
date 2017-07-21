@@ -13,7 +13,8 @@ that you run these as containers, so you need an image to be built.
 
 * docker
     * running own repository
-        (registry)[https://docs.docker.com/registry/#requirements]
+
+        [registry](https://docs.docker.com/registry/#requirements)
         ```
         docker run -d -p 5000:5000 --name registry registry:2
         ```
