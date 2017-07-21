@@ -1,5 +1,12 @@
 # Ideas
 
+## Enable searching in BASH history
+
+```
+stty -ixon
+(CTRL-r)
+```
+
 ## Horizontally scalable data
 
 ```

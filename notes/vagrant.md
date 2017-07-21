@@ -31,3 +31,19 @@ vagrant ssh
 
 
 
+### Config
+
+```
+$script = <<SCRIPT
+echo Installing blahblah
+...
+SCRIPT
+
+Vagrant.configure("2") do |config|
+   config.vm.box = "ubuntu/xenial64"
+   config.vm.hostname = "docker"
+   config.vm.network :private_network, ip: "192.168.0.42"
+   config.vm.provision "file", source: ".bash_profile", destination: ".bash_profile"
+   config.vm.provision "shell", inline: $script
+end
+```
