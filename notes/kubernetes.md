@@ -5,7 +5,18 @@ way you would run any system daemon, so you just need the bare binaries. For
 etcd, kube-apiserver, kube-controller-manager, and kube-scheduler, we recommend
 that you run these as containers, so you need an image to be built.
 
+
+* kubelet
+*
+
+## Components
+
 * docker
+    * running own repository
+        (registry)[https://docs.docker.com/registry/#requirements]
+        ```
+        docker run -d -p 5000:5000 --name registry registry:2
+        ```
 * etcd
     ```
     HostIP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
