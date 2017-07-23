@@ -10,8 +10,7 @@
 
 ## Fundamental Data characteristic
 
-* Unstructured vs Structured data
-* Volume (Huge)
+* Unstructured vs Structured data * Volume (Huge)
 * Digital format
 
 * Challenge is to make sense of the data
@@ -366,6 +365,82 @@ HDFS (or GFS) environment
 1. Reduce :: k2:[v2] -> [k3:v3]
 
 
+# MapReduce Algorithm design
+
+## PROS / CONS
+
+
+### Local Aggregation
+
+local aggregation is the *combiner*
+
+e.g. combiner aggregate term counts across the documents processed by each map
+task
+
+Result: reduction # of intermediate key-value pairs (only unique terms)
+
+```
+class Mapper
+  method Map(docid a; doc d)
+    H = new AssociateArray
+    for all term t in doc d do
+      H{t} = H{t} + 1
+    for all term t in H do
+      Emit(term t; count H{t})
+```
+
+```
+class Mapper
+
+method initialize
+    H = new AssociateArray
+
+method map(docid a; doc d)
+    for all term t in doc d do
+      H{t} = H{t} + 1
+
+method close
+    for all term t in H do
+      Emit(term t; count H{t})
+```
+
+LOL!!!!
+
+Is putting state in-mapper better? seems like it is not more difficult to
+manage
+
+*input split* - data block(64mb), file, blahblah
+
+
+#### in-mapper combiner
+
+*Design Pattern*
+
+Combining functionality insde the mapper, reduce cost
+
+Advantages
+    1. Provides control over when local aggregation occurs and how it takes
+      place (vs) Hadoop does not guantee how many times the combiner is applied
+      or if applied at all
+        Combiner is provied as a semantics-preserving optimization to execution
+        framework, which has the option of using it, perhaps multiple times or
+        not at all
+    1. in-mapper combining will typically be more efficient than using actual
+       combiners
+        overhead of materializing the key-value pairs. reduce amount of
+        intermediate data that is shuffled across the network
+
+Drawbacks
+
+* breaks functional programming underpinnings of MapReduce
+* Fundamental scalability bottleneck!
+    Solution: flush out memory periodically, limit memory usage
+
+
+_Algorithmic correctness w/ local aggregation_
+
+
+Map -> (Combiner) -> Reducer
 
 
 
