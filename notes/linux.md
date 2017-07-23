@@ -1,6 +1,6 @@
 # Linux
 
-Assocaitive Array
+## Assocaitive Array
 
     ```
     declare -A array
@@ -11,7 +11,7 @@ Assocaitive Array
     done
     ```
 
-Multiple lines
+## Multiple lines
 
     ```
     tee filepath > /dev/null <<- EOF
