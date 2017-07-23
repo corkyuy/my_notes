@@ -1,6 +1,7 @@
 # Linux
 
 Assocaitive Array
+
     ```
     declare -A array
     for i in "${!array[@]}"
@@ -11,6 +12,7 @@ Assocaitive Array
     ```
 
 Multiple lines
+
     ```
     tee filepath > /dev/null <<- EOF
     This
