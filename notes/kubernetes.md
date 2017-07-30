@@ -1,5 +1,4 @@
 # Kubernetes
-
 You will run docker, kubelet, and kube-proxy outside of a container, the same
 way you would run any system daemon, so you just need the bare binaries. For
 etcd, kube-apiserver, kube-controller-manager, and kube-scheduler, we recommend
@@ -51,3 +50,25 @@ sudo snap install conjure-up --classic
 
 
 
+# Kubelet
+
+Options
+```
+--address=0.0.0.0 (127.0.0.1 for master?)
+--allow-privileged=true
+--anonymous-auth=true
+--cgroup-driver=systemd (or cgroupfs)
+--cluster-domain=acbc.local
+--container-runtime=docker
+--docker-endpoint="unix:///var/run/docker.sock"
+--enable-server=true (false for master?)
+--file-check-frequency=20
+--hairpin-mode="promiscuous-bridge", "hairpin-veth" and "none". (default "promiscuous-bridge")
+--healthz-bind-address=0.0.0.0
+--healthz-port=10248
+--hostname-override=default ('master for master?')
+--http-check-frequency=20
+--iptables-masquerade-bit=14 (match with kube-proxy)
+--kubeconfig ( specify how to connect with API server)
+--register-node=true (false for master)
+```
