@@ -165,3 +165,8 @@ let fibs::[Integer]
   * try reinstalling hdevtools using ```stack install hdevtools```
   * make sure path points to the right version of hdevtools
 
+
+
+{-# LANGUAGE InstanceSigs #-} allow type signature for members in instance definition
+
+

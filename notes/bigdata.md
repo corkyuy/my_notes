@@ -442,7 +442,30 @@ _Algorithmic correctness w/ local aggregation_
 
 Map -> (Combiner) -> Reducer
 
+## 5
 
+## Pairs and Stripes
+
+Common approach for synchronization in MapReduce is to construct complex
+keys and values in a way data necessary for computation are brought together
+at the execution framework
+
+Problem:
+
+How many occurnce of i then e in a sentence, paragraph, or document. (window)
+
+
+### Pair
+
+"neighbor" defines the window
+
+> Emit(pair (w; u); count 1)
+
+> 
+
+### Stripes
+
+> emits an associated array
 
 
 
