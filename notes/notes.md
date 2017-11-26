@@ -116,3 +116,11 @@ nix-repl> builtins.toString [ gnugrep gnused ]
 vagrant init nixos/nixos-16.09-i686
 vagrant init nixos/nixos-16.09-x86_64
 ```
+
+## BASH error output
+
+```
+blah blah blah > /dev/null 2>&1
+```
+
+
