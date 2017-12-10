@@ -9,8 +9,7 @@ nix ==> nix-env -u vim ==> upgrade
 nix ==> nix-env -e vim ==> uninstall
 
 nix ==> default.nix
-nix ==> shell.nix
-
+nix ==> shell.nix 
 vim ==> easymotion ==> search in line \l
 vim ==> easymotion ==> /word<tab><tab>
 
@@ -97,8 +96,10 @@ pkgs: attrs:
   };
   in
   derivation (defaultAttrs // attrs) ```
+```
 
 **hello.nix**
+
 
 ```
 let
@@ -136,6 +137,7 @@ blah blah blah > /dev/null 2>&1
 ```
 
 ## NIX remove all stuff
+
 ```
 $ nix-channel --update
 $ nix-env -u --always
@@ -151,7 +153,7 @@ echo "export PATH=/nix/var/nix/profiles/default/bin:\$PATH" >> ~/nix.sh
 echo "export NIX_USER_PROFILE_DIR=/nix/var/nix/profiles/per-user/\$USER " >>
 ~/nix.sh
 
-# If you are under MACOS, also add:
+# If under OSX
 
 echo "export
 NIX_SSL_CERT_FILE=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt" >>
@@ -167,3 +169,6 @@ nix-env --switch-profile $NIX_USER_PROFILE_DIR/tuto-jdev
 ls -l ~/.nix-profile
 lrwxr-xr-x ... .nix-profile -> /nix/var/nix/profiles/per-user/<your-login>/tuto-jdev
 ```
+
+
+
