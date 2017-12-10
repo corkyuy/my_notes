@@ -123,4 +123,10 @@ vagrant init nixos/nixos-16.09-x86_64
 blah blah blah > /dev/null 2>&1
 ```
 
-
+## NIX remove all stuff
+```
+$ nix-channel --update
+$ nix-env -u --always
+$ rm /nix/var/nix/gcroots/auto/*
+$ nix-collect-garbage -d
+```
