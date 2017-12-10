@@ -127,6 +127,7 @@ blah blah blah > /dev/null 2>&1
 ```
 $ nix-channel --update
 $ nix-env -u --always
-$ rm /nix/var/nix/gcroots/auto/*
+$ rm /nix/var/nix/gcroots/auto/**
 $ nix-collect-garbage -d
 ```
+
