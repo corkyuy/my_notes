@@ -9,7 +9,7 @@ nix ==> nix-env -u vim ==> upgrade
 nix ==> nix-env -e vim ==> uninstall
 
 nix ==> default.nix
-nix ==> shell.nix 
+nix ==> shell.nix
 vim ==> easymotion ==> search in line \l
 vim ==> easymotion ==> /word<tab><tab>
 
