@@ -1,10 +1,10 @@
 # NIX
 
 
-## Basics
+"# Basics
 nix ==> nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-nix ==> nix-env -q ==> list all installed
-nix ==> nix-env -qas ==> status of available package
+nix ==> nix-env -q     ==> list all installed
+nix ==> nix-env -qas   ==> status of available package
 nix ==> nix-env -u vim ==> upgrade
 nix ==> nix-env -e vim ==> uninstall
 
@@ -33,16 +33,21 @@ nix-store -r /nix/store/xxxxxxxxx.drv ### build nix store
 ## NIX packages management
 
 ```
-nix-env -qaP | grep python3-3 --> search nix
-nix-env -q  ---> list all installed packages nix
-nix-env -i python3-3.3.3
-nix-env -iA nixpkgs.python3 --> using attribute name nix
-nix-env -uA nixpkgs.python3 --> update nix
-nix-env -u --> update all nix
-nix-env -e python3-3.3.3 --> uninstall nix
+nix-env -qaP | grep python3-3   --> search nix
+nix-env -q                      --> list all installed packages nix
+nix-env -i python3-3.3.3        --> nix install
+nix-env -iA nixpkgs.python3     --> using attribute name nix
+nix-env -uA nixpkgs.python3     --> update nix package
+nix-env -u                      --> update all nix
+nix-env -e python3-3.3.3        --> uninstall nix
+nix-env -qs                     --> list installed package in profile
+nix-env --list-generations      --> check entire profile history( link generations)
+nix-env --rollback              --> rollback
+nix-env --switch-generation 4   --> switch generation
 ```
 
 ## NIX generic builder script
+
 ```bash
 set -e
 unset PATH
