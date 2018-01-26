@@ -1,7 +1,8 @@
+
 # NIX
 
 
-"# Basics
+## Basics
 nix ==> nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 nix ==> nix-env -q     ==> list all installed
 nix ==> nix-env -qas   ==> status of available package
@@ -92,8 +93,7 @@ derivation {
 pkgs: attrs:
   with pkgs;
   let defaultAttrs = {
-    builder = "${bash}/bin/bash";
-    args = [ ./builder.sh ];
+    builder = "${bash}/bin/bash"; args = [ ./builder.sh ];
     baseInputs = [ gnutar gzip gnumake gcc binutils coreutils gawk gnused
                    gnugrep];
     buildInputs = [];
@@ -173,6 +173,54 @@ nix-env --switch-profile $NIX_USER_PROFILE_DIR/tuto-jdev
 
 ls -l ~/.nix-profile
 lrwxr-xr-x ... .nix-profile -> /nix/var/nix/profiles/per-user/<your-login>/tuto-jdev
+```
+
+## Nix build phases
+
+Test using n ix-shell --pure ./hello.nix
+
+* echo $out
+* echo $PATH
+* unpackPhase
+* cd $sourceRoot
+* patchPhase
+* configurePhase
+* buildPhase
+* installPhase
+
+
+## nixpkgs
+
+git clone git://github.com/NixOS/nixpkgs.git
+
+alternative to above:
+
+```
+cp -a ~/.nix-defexpr/channels/nixpkgs/ .
+find . -type d -exec chmod 755 {} \; 
+```
+
+## HASKELL & NIX
+
+```
+nix-env -i cabal2nix
+nix-env -i nix-prefetch-git
+nix-env -i cabal-install
+```
+
+
+### NIX-SHELL
+
+```
+nix-shell --attr env release0.nix
+```
+
+
+### Starting a cabal project
+
+```
+cabal init
+ +-> follow the instructions
 ```
 
 
