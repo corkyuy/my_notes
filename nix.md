@@ -3,15 +3,20 @@
 ## FAQ
 
 * Official cheatsheet?
+
     [Cheatsheet](https://nixos.wiki/wiki/Cheatsheet)
 * How to update?
+
+    ```
     nix-channel --update
     nix-env -u
+    ```
 * Where do I find nix channel status?
+
     [channel status](http://howoldis.herokuapp.com/)
 * How to update nix?
+
     ```
-    
     ```
 
 
