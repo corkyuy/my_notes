@@ -1,5 +1,18 @@
-
 # NIX
+
+## FAQ
+
+* Official cheatsheet?
+    (Cheatsheet)[https://nixos.wiki/wiki/Cheatsheet]
+* How to update?
+    nix-channel --update
+    nix-env -u
+* Where do I find nix channel status?
+    (channel status)[http://howoldis.herokuapp.com/]
+* How to update nix?
+    ```
+    
+    ```
 
 
 ## Basics
@@ -177,7 +190,7 @@ lrwxr-xr-x ... .nix-profile -> /nix/var/nix/profiles/per-user/<your-login>/tuto-
 
 ## Nix build phases
 
-Test using n ix-shell --pure ./hello.nix
+Test using nix-shell --pure ./hello.nix
 
 * echo $out
 * echo $PATH
