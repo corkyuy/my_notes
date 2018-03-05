@@ -1,5 +1,11 @@
 # Firefly III
 
+## TODO:
+
+* Installation
+
+    https://github.com/firefly-iii/firefly-iii
+
 
 ## FAQ
 
@@ -11,7 +17,7 @@
     ```
 
 * How do you start the firefly docker-machine
-    
+
     ```
     eval $(docker-machine env firefly-iii)
     docker-compose -f docker-compose.yml up
