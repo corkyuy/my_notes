@@ -9,5 +9,9 @@
     docker-machine start <machine>
     ```
 
-
+* How to remove a machine?
+    
+    ```
+    docker-machine rm <machine>
+    ```
 
