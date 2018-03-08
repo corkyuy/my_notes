@@ -1,5 +1,15 @@
 # Linux
 
+## How to...
+
+* Check open ports
+
+    ```
+    apt-get update
+    apt-get install net-tools
+    netstat -tuplen
+    ```
+
 ## Assocaitive Array
 
 ```
