@@ -5,9 +5,7 @@
 * Official cheatsheet?
 
     [Cheatsheet](https://nixos.wiki/wiki/Cheatsheet)
-* How to update?
-
-    ```
+* How to update?  ```
     nix-channel --update
     nix-env -u
     ```
@@ -240,6 +238,51 @@ nix-shell --attr env release0.nix
 cabal init
  +-> follow the instructions
 ```
+
+
+## NIX under the hood
+
+* universal interface to nix is string
+
+```
+> nix-instantiate example.nix
+... is equivalent to ...
+> nix-instantiate --expr 'import ./example.nix'
+```
+
+* producing nix expression (consistently)
+
+    - Save as [fetchNixpkgs.nix](https://nixos.wiki/wiki/How_to_fetch_Nixpkgs_with_an_empty_NIX_PATH) in your project direcotory
+    - Derive from fetchNixpkgs (example of installing hello.nix)
+
+        ```
+        # hello.nix
+
+        let
+          fetchNixpkgs = import ./fetchNixpkgs.nix;
+
+          nixpkgs = fetchNixpkgs {
+            rev = "76d649b59484607901f0c1b8f737d8376a904019";
+            sha256 = "01c2f4mj4ahir0sxk9kxbymg2pki1pc9a3y6r9x6ridry75fzb8h";
+          };
+
+          pkgs = import nixpkgs { config = {} }; # config = {} makes it more reliable
+
+        in
+          pkgs.hello
+        ```
+
+
+    
+    
+
+
+
+
+
+
+
+
 
 
 
