@@ -242,6 +242,8 @@ cabal init
 
 ## NIX under the hood
 
+Reference: [youtube](https://www.youtube.com/watch?v=GMQPzv3Sx58&list=PLCFAF6AA590059A23&index=4&t=321s)
+
 * universal interface to nix is string
 
 ```
