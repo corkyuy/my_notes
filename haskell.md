@@ -170,3 +170,8 @@ let fibs::[Integer]
 {-# LANGUAGE InstanceSigs #-} allow type signature for members in instance definition
 
 
+# ghci
+.ghci
+```
+:set prompt "\ESC[34mλ> \ESC[m"
+```

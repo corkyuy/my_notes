@@ -1,22 +1,205 @@
 # NIX
 
+
+# NIX & Haskell project creation
+
+> cabal init
+
+```
+# default.nix
+# To pin to a specific version of nixpkgs, you can substitute <nixpkgs> with:
+# `(builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/<nixpkgs_commit_hash>.tar.gz")`
+{ pkgs ? import <nixpkgs> {} }: pkgs.haskellPackages.developPackage
+  { root = ./.;
+    overrides = self: super:
+      { # Don't run a package's test suite
+        # foo = pkgs.haskell.lib.dontCheck pkgs.haskellPackages.foo;
+        #
+        # Don't enforce package's version constraints
+        # bar = pkgs.haskell.lib.doJailbreak pkgs.haskellPackages.bar;
+        #
+        # To discover more functions that can be used to modify haskell
+        # packages, run "nix-repl", type "pkgs.haskell.lib.", then hit
+        # <TAB> to get a tab-completed list of functions.
+      };
+    source-overrides =
+      { # Use a specific hackage version
+        # optparse-applicative = "0.14.0.0";
+        #
+        # Use a particular commit from github
+        # my-private-package = pkgs.fetchFromGitHub
+        #   { owner = "my-github-username";
+        #     repo = "my-private-package";
+        #     rev = "561de381bcccfe6792f2908a5022449a05ae0050";
+        #     sha256 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        #   };
+      };
+  }
+```
+
+```
+# shell.nix
+(import ./. {}).env
+
+```
+env is for the environment you use. This can be disregarded
+
+
+```
+nix-build
+or 
+nix-shell
+```
+
+
+```
+> ghcid -c "cabal v1-repl exe:hw8"
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Info
+
+* nix-env uses ~/.nix-defexpr
+    - others uses NIX\_PATH
+
+* Using unstable
+    ```
+    $ nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+    $ nix-channel --remove nixpkgs
+    $ nix-channel --update
+    ```
+
+## Workflow
+
+
 ## FAQ
 
 * Official cheatsheet?
 
     [Cheatsheet](https://nixos.wiki/wiki/Cheatsheet)
+
 * How to update?  ```
     nix-channel --update
     nix-env -u
     ```
-* Where do I find nix channel status?
-
-    [channel status](http://howoldis.herokuapp.com/)
-* How to update nix?
+* Where do I find nix channel status?  [channel status](http://howoldis.herokuapp.com/) * How to update nix?
 
     ```
     ```
 
+* How to generate a nixpkg.json? Getting the sha256 and stuff
+
+    ```
+    > nix-prefetch-git https://github.com/NixOS/nixpkgs.git 2c288548b93b657365c27a0132a43ba0080870cc
+    ```
+
+* Generate nix from cabal file
+
+    ```
+    > cabal2nix . > default.nix
+    ```
+
+* How to install haskellPackages?
+
+    ```
+    > nix-env -qaP -f "<nixpkgs>" -A haskellPackages | grep text
+    ```
+
+* How to start a new cabal project?
+
+    Steps:
+    1. copy the fetchNixpkgs.nix
+    2. cabal init
+    3. cabal2nix . > default.nix
+    4. create release.nix
+    ```
+let
+  fetchNixpkgs = import ./fetchNixpkgs.nix;
+  nixpkgs = fetchNixpkgs {
+    # tag: release-18.03
+    rev = "120b013e0c082d58a5712cde0a7371ae8b25a601";
+  };
+  pkgs = import nixpkgs { config = {}; };
+in
+  { hb = pkgs.haskellPackages.callPackage ./hb-exercise.nix {compiler="ghcHEAD";};
+  }
+    ```
+
+    5. create shell.nix
+    ```
+(import ./release.nix).hb
+    ```
+
+    6. create project.nix
+    ```
+{ nixpkgs ? import <nixpkgs> {}, compiler ? "default" }:
+let
+  inherit (nixpkgs) pkgs;
+  f = import ./default.nix;
+  haskellPackages = if compiler == "default"
+                        then pkgs.haskellPackages
+                        else pkgs.haskell.packages.${compiler};
+  drv = haskellPackages.callPackage f {};
+in
+
+  if pkgs.lib.inNixShell then drv.env else drv
+    ```
+
+    7. nix-shell
+
+    8. Update default.nix for haskell packages used, eg.
+
+    ```
+{ mkDerivation, base, stdenv, cabal, QuickCheck, ghc }:
+mkDerivation {
+  pname = "hb-exercise";
+  version = "1.0.0";
+  src = ./.;
+  isLibrary = false;
+  isExecutable = true;
+  libraryHaskellDepends = [];
+  executableHaskellDepends = [ base ghc QuickCheck ];
+  testHaskellDepends = [base];
+  homepage = "https://corky.com";
+  license = stdenv.lib.licenses.bsd3;
+}
+    ```
+
+* How to get Nixpkgs revision (version) you want to use?
+
+  Go to https://github.com/NixOS/nixpkgs and get the version you want to use
+
+* How to add more dependecies by in nix
+
+  - Add to default.nix
+
+      ```
+      { mkDerivation, base, stdenv, mtl }:
+      mkDerivation {
+        ...
+        isExecutable = true;
+        executableHaskellDepends = [ base mtl ];
+        isLibrary = true;
+        libraryHaskellDepends = [ base mtl ];
+      ```
+  - Remake the shell
 
 ## Basics
 nix ==> nix-channel --add https://nixos.org/channels/nixpkgs-unstable
@@ -244,7 +427,9 @@ cabal init
 
 Reference: [youtube](https://www.youtube.com/watch?v=GMQPzv3Sx58&list=PLCFAF6AA590059A23&index=4&t=321s)
 
-* universal interface to nix is string
+### Source code
+
+#### universal interface to nix is string
 
 ```
 > nix-instantiate example.nix
@@ -252,7 +437,7 @@ Reference: [youtube](https://www.youtube.com/watch?v=GMQPzv3Sx58&list=PLCFAF6AA5
 > nix-instantiate --expr 'import ./example.nix'
 ```
 
-* producing nix expression (consistently)
+#### producing nix expression (consistently)
 
     - Save as [fetchNixpkgs.nix](https://nixos.wiki/wiki/How_to_fetch_Nixpkgs_with_an_empty_NIX_PATH) in your project direcotory
     - Derive from fetchNixpkgs (example of installing hello.nix)
@@ -274,17 +459,81 @@ Reference: [youtube](https://www.youtube.com/watch?v=GMQPzv3Sx58&list=PLCFAF6AA5
           pkgs.hello
         ```
 
+#### debugging nix expression
 
-    
-    
+Evaluating an expression
+
+* nix-instantiate --eval --expr  ( shows you the records )
+
+  ```
+  > nix-instantiate --eval --expr 'let pkgs = import <nixpkgs> {}; in pkgs.hello;'
+  ```
+
+  This will show the derivation of 'hello' package. (it is derivation _if_ type
+  = "derivation")
+
+* nix-repl
+* implicitly part of another command (nix-build)
+
+#### Transform nix expression into a derivation "Instantiation"
 
 
 
+* nix-instantiate
+
+  ```
+  > nix-instantiate --expr 'let pkgs = import <nixpkgs> {}; in pkgs.hello'
+  ```
+
+### Derivation (/nix/store/*.drv files)
+
+Language-independent
+
+* path - predefined path
+* reproducable
+* deterministic
+
+```
+> fold /nix/store/xxxx.drv
+...
+> nix-shell
+```
+
+inputSrc -> binary source
 
 
+Copying derivation
+```
+> 
+```
+
+Consuming a derivation
+
+* nix-store --realise
+* nix-store --query
+* nix-store --gc
 
 
+### Build products
+
+Products = Anything in the /nix/store/ that is not _derivation_
+
+* nix-store --realise
+* nix-store --add
+
+Transform
+
+> nix-copy-closure --from xxxxx.
 
 
+### All together
 
+nix-build = nix-instantiate + nix-store --realise
+
+
+# Haskell compiler
+
+```
+nix-env -f "<nixpkgs>" -qaP -A haskell.compiler
+```
 
